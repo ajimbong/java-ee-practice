@@ -2,10 +2,11 @@ package dev.ajim.jee;
 
 import java.io.*;
 
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
-@WebServlet(name = "ajimServlet", value = "/ajim")
+@WebServlet(name = "ajimServlet", urlPatterns = "/ajim")
 public class Ajim extends HttpServlet {
     private String message;
 
@@ -13,7 +14,7 @@ public class Ajim extends HttpServlet {
         message = "Yo Ajim";
     }
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("text/html");
 
         // Hello
@@ -21,6 +22,14 @@ public class Ajim extends HttpServlet {
         out.println("<html><body>");
         out.println("<h1>" + message + "</h1>");
         out.println("</body></html>");
+
+        //redirect a user
+        //getServletContext().getRequestDispatcher("/hello-servlet").forward(request, response)
+
+        String name = request.getParameter("name");
+        if (name != null){
+            out.println("<h2> Hello " + name + "</h2>");
+        }
     }
 
     public void destroy() {
