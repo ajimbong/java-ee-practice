@@ -29,4 +29,10 @@ public class PersonServlet extends HttpServlet {
 
         doPost(req, resp);
     }
+
+    @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+       String id = req.getParameter("id");
+       resp.getWriter().println("<h1> The ID " + id + " </h1> <br> <p> Has been delete </p>");
+    }
 }
