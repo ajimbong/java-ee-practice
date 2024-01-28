@@ -27,7 +27,7 @@
     <td><%= "Output fName value" %></td>
     <td><%= "Output lName value" %></td>
     <td><%= "Output the password" %></td>
-    <td><a href="/update?id=[id]"> UPDATE </a></td>
+    <td><a href="/update?id=ajim"> UPDATE </a></td>
     <td><a class="btnDelete" href="/delete?id=<%= "MY_ID_YO" %>" name="delete"> DELETE </a></td>
 </tr>
 <% //closing of loop %>
