@@ -1,3 +1,5 @@
+<%@ page import="dev.ajim.jee.Person" %>
+<%@ page import="java.util.ArrayList" %>
 <!--- TODO: Write a servlet that will use this as a template to to output all the users-->
 
 <!-- ALSO use head.jsp as a base-->
@@ -19,18 +21,23 @@
     
     <%
         // retrieve the data from the servlet
+        ArrayList<Person> people = (ArrayList<Person>) request.getAttribute("people");
+
+        for (Person person : people){
+
+
         // and loop over it
     %>
 
 <tr>
-    <td><%= "Output ID value" %></td>
-    <td><%= "Output fName value" %></td>
-    <td><%= "Output lName value" %></td>
-    <td><%= "Output the password" %></td>
-    <td><a href="/update?id=ajim"> UPDATE </a></td>
-    <td><a class="btnDelete" href="/delete?id=<%= "MY_ID_YO" %>" name="delete"> DELETE </a></td>
+    <td><%= person.id() %></td>
+    <td><%= person.fname() %></td>
+    <td><%= person.lname() %></td>
+    <td><%= person.lname() %></td>
+    <td><a href="/update?id=<%= person.id() %>"> UPDATE </a></td>
+    <td><a class="btnDelete" href="/delete?id=<%= person.id() %>" name="delete"> DELETE </a></td>
 </tr>
-<% //closing of loop %>
+<% } %>
 </table>
 
 <div class="div-btns">

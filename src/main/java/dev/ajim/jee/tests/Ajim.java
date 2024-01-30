@@ -1,4 +1,4 @@
-package dev.ajim.jee;
+package dev.ajim.jee.tests;
 
 import java.io.*;
 

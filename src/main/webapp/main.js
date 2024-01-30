@@ -4,7 +4,6 @@ let arrey = [1, 2, 3]
 let myOb = {}
 
 form.addEventListener("submit", e => {
-    e.preventDefault()
 
     const passPattern =
       /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/;
@@ -21,21 +20,24 @@ form.addEventListener("submit", e => {
     else if(pass !== cpass)
         alert("The passwords do not correspond")
     else {
-        const formData = new FormData(form)
+        return true
+
+        //const formData = new FormData(form)
         // TheWorld123#Is
 
         // TODO: change fetch request url and create servlet to handle the action
-        fetch('file.php', { method: 'POST', body: formData })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-                window.location.href = "php/result.php";
-            })
-            .catch(err => {
-                console.log(err)
-                alert("Sorry there was an error")
-            })
+        // fetch('file.php', { method: 'POST', body: formData })
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         console.log(data)
+        //         window.location.href = "php/result.php";
+        //     })
+        //     .catch(err => {
+        //         console.log(err)
+        //         alert("Sorry there was an error")
+        //     })
     }
+    e.preventDefault()
 
 })
 
