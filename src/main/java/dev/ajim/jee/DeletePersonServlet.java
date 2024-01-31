@@ -7,6 +7,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 @WebServlet(name="deletePersonServlet", urlPatterns = "/delete")
 public class DeletePersonServlet extends HttpServlet {
@@ -17,8 +20,20 @@ public class DeletePersonServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String id = req.getParameter("id");
+        Integer id = Integer.parseInt(req.getParameter("id"));
 
-        resp.getWriter().println("<h1> The ID " + id + " </h1> <br> <p> Has been delete </p>");
+        try (Connection con = Con.getConnection()) {
+            PreparedStatement pst = con.prepareStatement("DELETE FROM persons WHERE id = ? ");
+            pst.setInt(1, id);
+
+            int rows = pst.executeUpdate();
+
+            System.out.println("Item deleted successfully, " + rows + " was affected.");
+
+            getServletContext().getRequestDispatcher("/person").forward(req, resp);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

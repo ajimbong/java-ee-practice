@@ -1,3 +1,4 @@
+<%@ page import="dev.ajim.jee.Person" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
@@ -11,30 +12,30 @@
             </div>
             <div class="item">
                 <%
-                // Get the values for the particular ID
+                    Person person = (Person) request.getAttribute("person");
                 %>
-                <form action="/update" method="post">
+                <form action="/update" method="POST">
                     <div class="item">
                         <label>First Name:</label>
-                        <input type="text" name="fname" value="<%= "Output the fName" %>" required="">
+                        <input type="text" name="fname" value="<%= person.fname() %>" required="">
                     </div>
 
                     <div class="item">
                         <label>Last Name:</label>
-                        <input type="text" name="lname" value="<%= "Output the lName" %>"  required="">
+                        <input type="text" name="lname" value="<%= person.lname() %>"  required="">
                     </div>
 
                     <div class="item">
                         <label>Password:</label>
-                        <input type="password" name="password"  value="<%= "Output the Password" %>"  required="">
+                        <input type="password" name="password"  value="<%= person.pass() %>"  required="">
                     </div>
 
-                    <input type="hidden" name="id" value="<%= "Output the ID" %>">
+                    <input type="hidden" name="id" value="<%= person.id() %>">
 
-            </div>
+                    </div>
             <div class="div-btns">
                 <button type="submit" name="save" > Save </button>
-                <button> <a href="/result" >Cancel</a></button>
+                <button> <a href="/person" >Cancel</a></button>
             </div>
         </div>
     </div>
