@@ -34,6 +34,7 @@ public class Con {
     public static Connection getConnection() {
         ClassLoader classLoader = Con.class.getClassLoader();
         InputStream inputStream = classLoader.getResourceAsStream("data.properties");
+
         try {
             props.load(inputStream);
         } catch (IOException e) {
